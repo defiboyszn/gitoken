@@ -1,9 +1,12 @@
 <!-- https://vike.dev/Head -->
 
 <template>
-  <link rel="icon" :href="logoUrl" />
+  <link rel="icon" type="image/png" :href="faviconUrl" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@600;800&display=swap" rel="stylesheet" />
 </template>
 
 <script setup lang="ts">
-import logoUrl from "../assets/logo.svg";
+import faviconUrl from "../assets/favicon.png";
 </script>

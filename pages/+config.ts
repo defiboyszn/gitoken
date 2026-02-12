@@ -6,8 +6,8 @@ import vikeVue from "vike-vue/config";
 
 export default {
   // https://vike.dev/head-tags
-  title: "My Vike App",
-  description: "Demo showcasing Vike",
+  title: "$gitoken Checker — How much is your GitHub worth?",
+  description: "Check your GitHub worth in $gitoken. Repos, stars, followers, orgs, gists & account age.",
 
   extends: [vikeVue],
 } as Config;
