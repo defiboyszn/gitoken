@@ -116,26 +116,38 @@
           rel="noopener noreferrer"
           class="token-stats-link"
         >
-          <span class="token-stat">
-            <span class="token-stat-label">Price</span>
-            <span class="token-stat-value">{{
-              tokenStats.priceFormatted
-            }}</span>
-          </span>
-          <span class="token-stat">
-            <span class="token-stat-label">MCap</span>
-            <span class="token-stat-value">{{ tokenStats.mcapFormatted }}</span>
-          </span>
-          <span v-if="tokenStats.priceChange24h != null" class="token-stat">
-            <span class="token-stat-label">24h</span>
-            <span
-              class="token-stat-value"
-              :class="tokenStats.priceChange24h >= 0 ? 'up' : 'down'"
-            >
-              {{ tokenStats.priceChange24h >= 0 ? "+" : ""
-              }}{{ tokenStats.priceChange24h.toFixed(1) }}%
+          <div class="token-card-header">
+            <img :src="faviconUrl" alt="$gitoken token" class="token-avatar" />
+            <div class="token-meta">
+              <div class="token-name">Gitoken</div>
+              <div class="token-symbol">$gitoken</div>
+            </div>
+          </div>
+
+          <div class="token-card-stats">
+            <span class="token-stat">
+              <span class="token-stat-label">Price</span>
+              <span class="token-stat-value">
+                {{ tokenStats.priceFormatted }}
+              </span>
             </span>
-          </span>
+            <span class="token-stat">
+              <span class="token-stat-label">MCap</span>
+              <span class="token-stat-value">
+                {{ tokenStats.mcapFormatted }}
+              </span>
+            </span>
+            <span v-if="tokenStats.priceChange24h != null" class="token-stat">
+              <span class="token-stat-label">24h</span>
+              <span
+                class="token-stat-value"
+                :class="tokenStats.priceChange24h >= 0 ? 'up' : 'down'"
+              >
+                {{ tokenStats.priceChange24h >= 0 ? "+" : "" }}
+                {{ tokenStats.priceChange24h.toFixed(1) }}%
+              </span>
+            </span>
+          </div>
         </a>
       </section>
     </div>
@@ -146,6 +158,7 @@
 import { ref, computed } from "vue";
 import { useData } from "vike-vue/useData";
 import logoUrl from "../../assets/logo.png";
+import faviconUrl from "../../assets/favicon.png";
 
 const data = useData();
 const tokenStats = computed(() => data?.tokenStats ?? null);
@@ -933,11 +946,68 @@ async function check() {
   transform: translateY(12px);
 }
 
-
 .token-stats-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
+}
+
+
+.token-stats-link {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+  padding: 0.8rem 1rem;
+  background: var(--gitoken-surface);
+  border: 1px solid var(--gitoken-border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+
+.token-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.token-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid var(--gitoken-border-hover);
+}
+
+.token-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.token-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gitoken-text-soft);
+}
+
+.token-symbol {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gitoken-text-dim);
+}
+
+.token-card-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 </style>
